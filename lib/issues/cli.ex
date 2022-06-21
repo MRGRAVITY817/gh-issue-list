@@ -5,8 +5,17 @@ defmodule Issues.CLI do
   Parse the command line args, call various
   functions to print out the latest github issues
   """
+
+  def main(argv) do
+    argv
+    |> parse_args()
+    |> process()
+  end
+
   def run(argv) do
-    argv |> parse_args() |> process()
+    argv
+    |> parse_args()
+    |> process()
   end
 
   @doc """
