@@ -9,7 +9,7 @@ defmodule Issues.MixProject do
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       name: "Issues",
-      source_url: "https://github.com/MRGRAVITY817/gh-issue-list",
+      source_url: "https://github.com/MRGRAVITY817/gh-issue-lister",
       deps: deps()
     ]
   end
