@@ -1,6 +1,10 @@
 defmodule Issues.TableFormatter do
   import Enum, only: [map_join: 3, each: 2, map: 2, max: 1]
 
+  @doc """
+  Takes a list of maps and list of headers
+  and print out as STDOUT in column wise output.
+  """
   def print_table_for_columns(rows, headers) do
     with data_by_columns = split_into_columns(rows, headers),
          column_widths = widths_of(data_by_columns),
@@ -11,6 +15,16 @@ defmodule Issues.TableFormatter do
     end
   end
 
+  @doc """
+  If each row is a list of key-value couples, take these rows
+  and split the values in it to belong to the column with key header.
+
+  ## Example
+      iex> list = [Enum.into([{"a", "1"}, {"b", "2"}, {"c", "3"}], %{}),
+      ...>         Enum.into([{"a", "4"}, {"b", "5"}, {"c", "6"}], %{})]
+      iex> Issues.TableFormatter.split_into_columns(list, ["a", "b", "c"])
+      [ ["1", "4"], ["2", "5"], ["3", "6"] ]
+  """
   def split_into_columns(rows, headers) do
     for header <- headers do
       for row <- rows, do: printable(row[header])
